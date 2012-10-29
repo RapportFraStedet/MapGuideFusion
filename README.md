@@ -1,4 +1,4 @@
-Widgets
+MapGuide Fusion
 =======
 
-MapGuide Fusion Widgets
+Customized implementation of Fusion for MapGuide
