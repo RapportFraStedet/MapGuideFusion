@@ -66,6 +66,7 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget,  {
 	vector:null,
 	searchStatus:null,
 	icon:null,
+	zoom:null,
 	setUiObject: function(uiObj) {
 		this.uiObj=uiObj;
 		Fusion.Widget.prototype.setUiObject.apply(this, [uiObj]);
@@ -209,6 +210,8 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget,  {
 			this.x2 = ext.x2[0];
 		if (ext.y2)
 			this.y2 = ext.y2[0];
+		if (ext.zoom)
+			this.zoom = ext.zoom[0];
 		this.projection = ext.projection[0];
 		jQuery('.jxFlyout').addClass('RfsSearch');
 		//jQuery('.jxFlyoutContent > .jxPanel > .jxPanelContentContainer > .jxPanelContent').append(tablediv);
@@ -447,7 +450,9 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget,  {
 					lonlat.transform(new OpenLayers.Projection(self.projection), mapProjection);
 					self.vector.clearMarkers();
 					self.vector.addMarker(new OpenLayers.Marker(lonlat,this.icon));
-					self.map.zoomToExtent(self.vector.getDataExtent());
+					//self.map.zoomToExtent(self.vector.getDataExtent());
+					var o = self.zoom/2;
+					self.map.zoomToExtent([lonlat.lon-o, lonlat.lat-o, lonlat.lon+o, lonlat.lat+o]);
                     /*var point = new OpenLayers.Geometry.Point(self.getPath(data, self.x1), self.getPath(data, self.y1));
                     point.transform(new OpenLayers.Projection(self.projection), self.map.projection);
 					self.vector.removeAllFeatures();
