@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Sample Fusion Application</title>
+<script type="text/javascript" src="../../../lib/fusion.js"></script>
+<script type="text/javascript" src="jquery-1.8.2.js"></script>
+<script type="text/javascript" src="jquery.tinysort.js"></script>
+<script type="text/javascript" src="jquery.tinysort.charorder.js"></script>
+<link rel="stylesheet" href="themes/delicious/jxtheme.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="icons.css" type="text/css" media="screen" charset="utf-8">
+
+
+<style type="text/css">
+    #Statusbar .spanCursorPosition,
+    #Statusbar .inputEditableScalePrefix,
+    #Statusbar .inputEditableScale,
+    #Statusbar .spanViewSize,
+    #Statusbar .spanSelectionInfo {
+        background-color: #fff;
+        padding: 2px 4px;
+        line-height: 18px;
+        font-size: 11px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    li.jxToolItem.activityIndicator {
+        float: right;
+        padding: 6px 3px;
+    }
+
+</style>
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="themes/delicious/ie6.css" type="text/css" media="screen" charset="utf-8">
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" href="themes/delicious/ie7.css" type="text/css" media="screen" charset="utf-8">
+<![endif]-->
+<script type="text/javascript">
+window.onload = function() {
+	
+    /* make 'thePage' just fill the browser window and resize automagically
+       the user resizes the browser */
+	new Jx.Layout('thePage').resize();
+	var topToolbar = new Jx.Toolbar({id: 'Toolbar', position: 'top'});
+    var mainPanel = new Jx.Panel({
+        id: 'Main',
+		/*content: new Jx.Layout('Map'),*/
+        hideTitle: true,
+        toolbars: [topToolbar]
+    });
+    mainPanel.addTo('thePage')
+    new Jx.Layout('Main');
+new Jx.Splitter(mainPanel.content, {
+       elements: ['Map', 'RapportFraStedet'],
+       containerOptions: [{}, {width: 500}]
+    });
+    //new Jx.Layout('Statusbar', {height: 30, top: null});
+    
+    Fusion.registerForEvent(Fusion.Event.FUSION_INITIALIZED, function() {
+        $('thePage').resize({forceResize: true});
+        $('thePage').style.visibility = 'visible';
+        mainPanel.layoutContent();
+    });
+    Fusion.registerForEvent(Fusion.Event.FUSION_ERROR, fusionError);
+    Fusion.initialize();
+}
+
+function fusionError(eventId, error) {
+    console.log('Fusion Error: \n' + error.toString());
+}
+
+</script>
+</head>
+
+<body>
+
+<div id="thePage" style="visibility: hidden">
+
+  <div id="Map"><div id="Navigator"></div></div>
+<div id="RapportFraStedet"></div>
+</div>
+<div id="Maptip">
+</body>
+</html>

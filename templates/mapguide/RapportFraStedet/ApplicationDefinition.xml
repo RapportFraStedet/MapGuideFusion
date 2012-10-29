@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApplicationDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="ApplicationDefinition-1.0.0.xsd">
+
+<!-- ****************************************** 
+* MapSet
+* 
+* Contains the map(s) you want available to your
+* application.
+ ****************************************** -->
+
+  <MapSet>
+    <MapGroup id="MainMap">
+      <Map>
+        <Type>MapGuide</Type>
+        <SingleTile>True</SingleTile>
+        <Extension>
+          <ResourceId>Library://Samples/Sheboygan/Maps/SheboyganGoogle.MapDefinition</ResourceId>
+          <Options>
+            <isBaseLayer>false</isBaseLayer>
+            <useOverlay>true</useOverlay>
+            <projection>EPSG:900913</projection>
+          </Options>
+        </Extension>
+      </Map>
+      <Map>
+        <Type>OpenStreetMap</Type>
+        <SingleTile>true</SingleTile>
+        <Extension>
+          <Options>
+            <name>Open Street Map</name>
+            <type>Mapnik</type>
+          </Options>
+        </Extension>
+      </Map>
+    </MapGroup>
+  </MapSet>
+
+<!-- ****************************************** 
+* WidgetSet
+*
+* Contains the widgets you want available to your 
+* application.
+ ****************************************** -->
+
+  <WidgetSet>
+
+
+
+<!-- ****************************************** 
+* Toolbar (Primary)
+*
+* 
+ ****************************************** -->
+
+    <Container>
+      <Name>Toolbar</Name>
+      <Type>Toolbar</Type>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>LegendFlyout</Widget>
+      </Item>
+	  <Item>
+        <Function>Widget</Function>
+        <Widget>Adresse</Widget>
+      </Item>
+	  <Item>
+        <Function>Widget</Function>
+        <Widget>Matrikel</Widget>
+      </Item>
+      <Item>
+        <Function>Separator</Function>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>Select</Widget>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>Pan</Widget>
+      </Item>
+      <Item>
+        <Function>Separator</Function>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>ZoomInRectangle</Widget>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>ZoomInFixed</Widget>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>ZoomOutFixed</Widget>
+      </Item>
+	  <Item>
+        <Function>Widget</Function>
+        <Widget>Print</Widget>
+      </Item>
+	  <Item>
+        <Function>Widget</Function>
+        <Widget>QuickPlot</Widget>
+      </Item>
+    </Container>
+
+
+<!-- ****************************************** 
+* Statusbar (Status Bar)
+*
+* 
+ ****************************************** -->
+
+
+    <Container>
+      <Name>Statusbar</Name>
+      <Type>Splitterbar</Type>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>StatusCoords</Widget>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>StatusSelection</Widget>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>StatusScale</Widget>
+      </Item>
+      <Item>
+        <Function>Widget</Function>
+        <Widget>StatusViewSize</Widget>
+      </Item>
+    </Container>
+
+<!-- MAP -->
+
+    <MapWidget>
+      <Name>Map</Name>
+      <Type>Map</Type>
+      <StatusText>The map.</StatusText>
+      <Extension>
+        <MenuContainer>MapContextMenu</MenuContainer>
+        <!--Scales>100000,50000,25000,12500,8000,4000</Scales-->
+      </Extension>
+      <MapId>MainMap</MapId>
+    </MapWidget>
+
+<!-- ****************************************** 
+* Context Menu - Widgets
+*
+* Widgets belonging to the map context menu
+ ****************************************** -->
+
+<!-- CONTEXT MENU PAN -->
+
+    <Widget>
+      <Name>menuPan</Name>
+      <Type>Pan</Type>
+      <StatusText>Drag the map to view areas out of range.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>pan</ImageClass>
+      <Tooltip>Pan mode</Tooltip>
+      <Label>Pan</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU ZOOM RECTANGLE -->
+
+    <Widget>
+      <Name>menuZoomInRectangle</Name>
+      <Type>Zoom</Type>
+      <StatusText>Zoom in on an area.</StatusText>
+      <Extension>
+        <Tolerance>5</Tolerance>
+        <Factor>2</Factor>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-in</ImageClass>
+      <Tooltip>Zoom In</Tooltip>
+      <Label>Zoom Rectangle</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU ZOOM FIXED (IN) -->
+
+    <Widget>
+      <Name>menuZoomInFixed</Name>
+      <Type>ZoomOnClick</Type>
+      <StatusText>Zoom in by a preset increment.</StatusText>
+      <Extension>
+        <Factor>2</Factor>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-in-fixed</ImageClass>
+      <Tooltip>Zoom In</Tooltip>
+      <Label>Zoom In</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU REFRESH MAP -->
+
+    <Widget>
+      <Name>menuRefreshMap</Name>
+      <Type>RefreshMap</Type>
+      <StatusText>Refreshes the map image.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-refresh</ImageClass>
+      <Tooltip>Refresh map and reload all layers, keeping the current center point and scale.</Tooltip>
+      <Label>Refresh Map</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU ZOOM FIXED (OUT) -->
+
+    <Widget>
+      <Name>menuZoomOutFixed</Name>
+      <Type>ZoomOnClick</Type>
+      <StatusText>Zoom out by a preset increment</StatusText>
+      <Extension>
+        <Factor>0.5</Factor>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-out-fixed</ImageClass>
+      <Tooltip>Zoom Out</Tooltip>
+      <Label>Zoom Out</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU INITIAL MAP VIEW -->
+
+    <Widget>
+      <Name>menuInitialMapView</Name>
+      <Type>InitialMapView</Type>
+      <StatusText>Fit the extents of the map to the window</StatusText>
+      <Extension>
+        <ViewType>extent</ViewType>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-full</ImageClass>
+      <Tooltip>Initial Map View</Tooltip>
+      <Label>Initial Map View</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU PREVIOUS VIEW -->
+
+    <Widget>
+      <Name>menuPreviousView</Name>
+      <Type>ExtentHistory</Type>
+      <StatusText>Go to previous view.</StatusText>
+      <Extension>
+        <Direction>previous</Direction>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-back</ImageClass>
+      <Tooltip>Previous View</Tooltip>
+      <Label>View Previous</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU NEXT VIEW -->
+
+    <Widget>
+      <Name>menuNextView</Name>
+      <Type>ExtentHistory</Type>
+      <StatusText>Go to next view.</StatusText>
+      <Extension>
+        <Direction>next</Direction>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-forward</ImageClass>
+      <Tooltip>Next View</Tooltip>
+      <Label>View Next</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU INITIAL MAP VIEW -->
+
+    <Widget>
+      <Name>menuInitialMapScaleAndCenter</Name>
+      <Type>InitialMapView</Type>
+      <StatusText>Zoom to initial map center and scale.</StatusText>
+      <Extension>
+        <ViewType>center</ViewType>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-full</ImageClass>
+      <Tooltip>Initial Map Center and Scale</Tooltip>
+      <Label>Initial Center and Scale</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU ZOOM SELECTION -->
+
+    <Widget>
+      <Name>menuZoomSelection</Name>
+      <Type>ZoomToSelection</Type>
+      <StatusText>Zoom to the extents of the current selection.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-zoom</ImageClass>
+      <Tooltip>Zoom to selection.</Tooltip>
+      <Label>Zoom Selection</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU SELECT -->
+
+    <Widget>
+      <Name>menuSelect</Name>
+      <Type>Select</Type>
+      <StatusText>Select features by clicking and dragging.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-features</ImageClass>
+      <Tooltip>Select mode</Tooltip>
+      <Label>Select mode</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU CLEAR SELECTION -->
+
+    <Widget>
+      <Name>menuClearSelection</Name>
+      <Type>ClearSelection</Type>
+      <StatusText>Clears the current selection.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-clear</ImageClass>
+      <Tooltip/>
+      <Label>Clear Selection</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU SELECT RADIUS -->
+
+    <Widget>
+      <Name>menuSelectRadius</Name>
+      <Type>SelectRadius</Type>
+      <StatusText>Click and drag to select all features inside a circle.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-radius</ImageClass>
+      <Tooltip>Select Radius</Tooltip>
+      <Label>Select Radius</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU SELECT POLYGON -->
+
+    <Widget>
+      <Name>menuSelectPolygon</Name>
+      <Type>SelectPolygon</Type>
+      <StatusText>Create a polygon and select all features that fall within.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-polygon</ImageClass>
+      <Tooltip>Select Polygon</Tooltip>
+      <Label>Select Polygon</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU SELECT WITHIN -->
+
+    <Widget>
+      <Name>menuSelectWithin</Name>
+      <Type>SelectWithin</Type>
+      <Extension>
+        <WidgetLayerId>mapguide</WidgetLayerId>
+      </Extension>
+      <StatusText>Select all features that fall within the currently selected area.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-within</ImageClass>
+      <Tooltip>Select Within</Tooltip>
+      <Label>Select Within</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU BUFFER -->
+
+    <Widget>
+      <Name>menuBuffer</Name>
+      <Type>BufferPanel</Type>
+      <Extension>
+        <WidgetLayerId>mapguide</WidgetLayerId>
+      </Extension>
+      <StatusText>Create buffers around the selected features</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>buffer</ImageClass>
+      <Tooltip>Buffer</Tooltip>
+      <Label>Buffer</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU  VIEW OPTIONS -->
+
+    <Widget>
+      <Name>menuViewOptions</Name>
+      <Type>ViewOptions</Type>
+      <StatusText>Switch between Imperial and Metric units</StatusText>
+      <Extension>
+        <DisplayUnits>degrees</DisplayUnits>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-options</ImageClass>
+      <Tooltip/>
+      <Label>View Options</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU HELP -->
+
+    <Widget>
+      <Name>menuHelp</Name>
+      <Type>Help</Type>
+      <StatusText/>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>help</ImageClass>
+      <Tooltip/>
+      <Label>Help</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU ABOUT -->
+
+    <Widget>
+      <Name>menuAbout</Name>
+      <Type>About</Type>
+      <StatusText/>
+      <ImageUrl/>
+      <ImageClass/>
+      <Tooltip/>
+      <Label>About</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- CONTEXT MENU MEASURE -->
+
+    <Widget>
+      <Name>menuMeasure</Name>
+      <Type>Measure</Type>
+      <StatusText>Measure distances and areas on the map.</StatusText>
+      <Extension>
+        <Type>both</Type>
+        <MeasureTooltipContainer>MeasureResult</MeasureTooltipContainer>
+        <MeasureTooltipType>dynamic</MeasureTooltipType>
+        <DistancePrecision>0</DistancePrecision>
+        <AreaPrecision>0</AreaPrecision>
+        <Units>meters</Units>
+        <Target>TaskPane</Target>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>measure</ImageClass>
+      <Tooltip>Buffer</Tooltip>
+      <Label>Measure</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- ****************************************** 
+* Toolbar - Widgets
+*
+* Widgets belonging to the main toolbar
+ ****************************************** -->
+
+<!-- TOOLBAR BUFFER -->
+
+    <Widget>
+      <Name>toolbarBuffer</Name>
+      <Type>BufferPanel</Type>
+      <StatusText>Create buffers around the selected features</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>buffer</ImageClass>
+      <Tooltip>Buffer</Tooltip>
+      <Label>Buffer</Label>
+      <Extension>
+        <Target>TaskPane</Target>
+        <WidgetLayerId>mapguide</WidgetLayerId>
+      </Extension>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR REFRESH MAP -->
+
+    <Widget>
+      <Name>toolbarRefreshMap</Name>
+      <Type>RefreshMap</Type>
+      <StatusText>Refreshes the map image.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-refresh</ImageClass>
+      <Tooltip>Refresh map and reload all layers, keeping the current center point and scale.</Tooltip>
+      <Label>Refresh Map</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR MEASURE -->
+
+    <Widget>
+      <Name>toolbarMeasure</Name>
+      <Type>Measure</Type>
+      <StatusText>Measure distances and areas on the map.</StatusText>
+      <Extension>
+        <Type>both</Type>
+        <MeasureTooltipContainer>MeasureResult</MeasureTooltipContainer>
+        <MeasureTooltipType>dynamic</MeasureTooltipType>
+        <DistancePrecision>0</DistancePrecision>
+        <AreaPrecision>0</AreaPrecision>
+        <Units>meters</Units>
+        <!--Target>TaskPane</Target-->
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>measure</ImageClass>
+      <Tooltip>Measure</Tooltip>
+      <Label>Measure</Label>
+      <Disabled/>
+    </Widget>
+
+    <Widget>
+      <Name>toolbarSaveMap</Name>
+      <Type>SaveMap</Type>
+      <StatusText></StatusText>
+      <Extension>
+      </Extension>
+      <Tooltip>SaveMap</Tooltip>
+      <Label>Save Map</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR VIEW OPTIONS -->
+
+    <Widget>
+      <Name>toolbarViewOptions</Name>
+      <Type>ViewOptions</Type>
+      <StatusText>Switch between Imperial and Metric units</StatusText>
+      <Extension>
+        <DisplayUnits>meters</DisplayUnits>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-options</ImageClass>
+      <Tooltip/>
+      <Label>View Options</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR HELP -->
+
+    <Widget>
+      <Name>toolbarHelp</Name>
+      <Type>Help</Type>
+      <StatusText/>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>help</ImageClass>
+      <Tooltip/>
+      <Label></Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR ABOUT -->
+
+    <Widget>
+      <Name>toolbarAbout</Name>
+      <Type>About</Type>
+      <StatusText/>
+      <ImageUrl/>
+      <ImageClass/>
+      <Tooltip/>
+      <Label>About</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR CLEAR SELECTION -->
+
+    <Widget>
+      <Name>toolbarClearSelection</Name>
+      <Type>ClearSelection</Type>
+      <StatusText>Clears the current selection.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-clear</ImageClass>
+      <Tooltip/>
+      <Label></Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR SELECT RADIUS -->
+
+    <Widget>
+      <Name>toolbarSelectRadius</Name>
+      <Type>SelectRadius</Type>
+      <StatusText>Click and drag to select all features inside a circle.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-radius</ImageClass>
+      <Tooltip>Select Radius</Tooltip>
+      <Extension>
+        <RadiusTooltipContainer>RadiusTip</RadiusTooltipContainer>
+      </Extension>
+      <Label></Label>
+      <Disabled/>
+    </Widget>
+
+<!-- TOOLBAR SELECT POLYGON -->
+
+    <Widget>
+      <Name>toolbarSelectPolygon</Name>
+      <Type>SelectPolygon</Type>
+      <StatusText>Create a polygon and select all features that fall within.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-polygon</ImageClass>
+      <Tooltip>Select Polygon</Tooltip>
+      <Label></Label>
+      <Disabled/>
+    </Widget>
+
+
+
+<!-- ****************************************** 
+* Secondary toolbar - Widgets
+*
+* Widgets belonging to the secondary toolbar
+ ****************************************** -->
+
+<!-- SECONDARY TOOLBAR INITIAL MAP VIEW -->
+
+    <Widget>
+      <Name>toolbarSecondaryInitialMapView</Name>
+      <Type>InitialMapView</Type>
+      <StatusText>Fit the extents of the map to the window</StatusText>
+      <Extension>
+        <ViewType>extent</ViewType>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-full</ImageClass>
+      <Tooltip>Initial Map View</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- SECONDARY TOOLBAR PREVIOUS VIEW-->
+
+    <Widget>
+      <Name>toolbarSecondaryPreviousView</Name>
+      <Type>ExtentHistory</Type>
+      <StatusText>Go to previous view.</StatusText>
+      <Extension>
+        <Direction>previous</Direction>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-back</ImageClass>
+      <Tooltip>Previous View</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- SECONDARY TOOLBAR NEXT VIEW -->
+
+    <Widget>
+      <Name>toolbarSecondaryNextView</Name>
+      <Type>ExtentHistory</Type>
+      <StatusText>Go to next view.</StatusText>
+      <Extension>
+        <Direction>next</Direction>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>view-forward</ImageClass>
+      <Tooltip>Next View</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- SECONDARY TOOLBAR ZOOM SELECTION -->
+
+    <Widget>
+      <Name>toolbarSecondaryZoomSelection</Name>
+      <Type>ZoomToSelection</Type>
+      <StatusText>Zoom to the extents of the current selection.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-zoom</ImageClass>
+      <Tooltip>Zoom to selection.</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- SECONDARY TOOLBAR SELECT WITHIN -->
+
+    <Widget>
+      <Name>toolbarSelectWithin</Name>
+      <Type>SelectWithin</Type>
+      <StatusText>Select all features that fall within the currently selected area.</StatusText>
+      <ImageUrl>images/icons/select-features.png</ImageUrl>
+      <Extension>
+        <Target>TaskPane</Target>
+        <WidgetLayerId>mapguide</WidgetLayerId>
+      </Extension>
+      <ImageClass/>
+      <Tooltip>Select Within</Tooltip>
+      <Label></Label>
+      <Disabled/>
+    </Widget>
+
+
+
+<!-- ****************************************** 
+* Status Bar - Widgets
+*
+* Widgets belonging to the status bar
+ ****************************************** -->
+
+<!-- STATUS POSITION -->
+
+    <Widget>
+      <Name>StatusCoords</Name>
+      <Type>CursorPosition</Type>
+      <StatusText/>
+      <Extension>
+        <Template>X: {x} {units}, Y: {y} {units}</Template>
+        <Precision>4</Precision>
+        <EmptyText>&amp;nbsp;</EmptyText>
+      </Extension>
+    </Widget>
+
+<!-- STATUS SELECTION INFO -->
+
+    <Widget>
+      <Name>StatusSelection</Name>
+      <Type>SelectionInfo</Type>
+      <StatusText/>
+      <Extension>
+          <EmptyText>No selection.</EmptyText>
+     </Extension>
+    </Widget>
+
+<!-- STATUS SCALE -->
+
+    <Widget>
+      <Name>StatusScale</Name>
+      <Type>EditableScale</Type>
+      <StatusText/>
+    </Widget>
+
+<!-- STATUS VIEWSIZE -->
+
+    <Widget>
+      <Name>StatusViewSize</Name>
+      <Type>ViewSize</Type>
+      <StatusText/>
+      <Extension>
+        <Template>{w} x {h} ({units})</Template>
+        <Precision>2</Precision>
+      </Extension>
+    </Widget>
+
+<!-- ****************************************** 
+* Panels - Widgets
+*
+* Widgets belonging to the status bar
+ ****************************************** -->
+
+<!-- LEGEND 
+-->
+	<Widget>
+      <Name>LegendFlyout</Name>
+      <Type>LegendFlyout</Type>
+      <Extension>
+        <ShowRootFolder>false</ShowRootFolder>
+      </Extension>
+      <StatusText/>
+	  <Label>Signatur</Label>
+    </Widget>
+    
+	<Widget>
+      <Name>Legend</Name>
+      <Type>Legend</Type>
+      <Extension>
+        <ShowRootFolder>false</ShowRootFolder>
+      </Extension>
+      <StatusText/>
+    </Widget>
+<!-- SELECTION -->
+
+    <Widget>
+      <Name>SelectionPanel</Name>
+      <Type>SelectionPanel</Type>
+      <StatusText/>
+    </Widget>
+
+<!-- ****************************************** 
+* Misc - Widgets
+ ****************************************** -->
+
+<!-- INMAP NAVIGATOR -->
+
+    <Widget>
+      <Name>Navigator</Name>
+      <Type>Navigator</Type>
+      <Extension>
+      </Extension>
+    </Widget>
+
+<!-- ZOOM IN RECTANGLE -->
+
+    <Widget>
+      <Name>ZoomInRectangle</Name>
+      <Type>Zoom</Type>
+      <StatusText>Zoom in on an area.</StatusText>
+      <Extension>
+        <Tolerance>5</Tolerance>
+        <Factor>2</Factor>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-in</ImageClass>
+      <Tooltip>Zoom in to a rectangular region.</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- ZOOM ON CLICK (IN) -->
+
+    <Widget>
+      <Name>ZoomInFixed</Name>
+      <Type>ZoomOnClick</Type>
+      <StatusText>Zoom in by a preset increment.</StatusText>
+      <Extension>
+        <Factor>4</Factor>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-in-fixed</ImageClass>
+      <Tooltip>Zoom in by a fixed factor.</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- ZOOM ON CLICK (OUT) -->
+
+    <Widget>
+      <Name>ZoomOutFixed</Name>
+      <Type>ZoomOnClick</Type>
+      <StatusText>Zoom out by a preset increment</StatusText>
+      <Extension>
+        <Factor>0.5</Factor>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>zoom-out-fixed</ImageClass>
+      <Tooltip>Zoom Out by a fixed factor</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- SELECT -->
+
+    <Widget>
+      <Name>Select</Name>
+      <Type>Select</Type>
+      <StatusText>Select features by clicking and dragging.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-features</ImageClass>
+      <Tooltip>Select mode</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+<!-- MAPMENU -->
+
+    <Widget>
+      <Name>MapMenu</Name>
+      <Type>MapMenu</Type>
+      <StatusText/>
+      <Extension>
+        <!--Folder>Library://Samples/Sheboygan/</Folder-->
+      </Extension>
+      <ImageUrl/>
+      <ImageClass/>
+      <Tooltip/>
+      <Label>Maps</Label>
+      <Disabled/>
+    </Widget>
+
+<!-- OVERVIEW MAP -->
+
+
+    <Widget>
+      <Name>OverviewMap</Name>
+      <Type>OverviewMap</Type>
+      <Description/>
+      <Extension>
+        <!--MapId>sheboygan</MapId-->
+      </Extension>
+    </Widget>
+    
+<!-- PRINT -->
+    <Widget>
+      <Name>Print</Name>
+      <Type>Print</Type>
+      <StatusText>Get printer-friendly page.</StatusText>
+      <Extension>
+        <ShowPrintUI>true</ShowPrintUI>
+        <ShowTitle>true</ShowTitle>
+        <PageTitle>Some Title</PageTitle>
+        <ShowLegend>true</ShowLegend>
+        <ShowNorthArrow>true</ShowNorthArrow>
+        <ImageBaseUrl>images/</ImageBaseUrl>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>file-print</ImageClass>
+      <Tooltip>Get printable page.</Tooltip>
+      <Label></Label>
+      <Disabled/>
+    </Widget>
+
+<!-- PAN -->
+    <Widget>
+    
+      <Name>Pan</Name>
+      <Type>Pan</Type>
+      <StatusText>Drag the map to view areas out of range.</StatusText>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>pan</ImageClass>
+      <Tooltip>Pan mode</Tooltip>
+      <Label/>
+      <Disabled/>
+    </Widget>
+
+    <Widget>
+      <Name>Scalebar</Name>
+      <Type>ScalebarDual</Type>
+    </Widget>
+    
+    <Widget>
+      <Name>MapTip</Name>
+      <Type>Maptip</Type>
+      <Extension>
+        <Label>Map Tips</Label>
+        <Delay>350</Delay>
+        <Layer>Parcels</Layer>
+        <WidgetLayerId>mapguide</WidgetLayerId>
+      </Extension>
+    </Widget>
+    <Widget xsi:type="UiWidgetType">
+      <Name>Adresse</Name>
+      <Type>RfsSearch</Type>
+      <Location />
+      <Extension>
+        <placeholder1>Søg kommune...</placeholder1>
+        <url1>http://geo.oiorest.dk/kommuner.json?q=[text]</url1>
+        <id1>nr</id1>
+        <name1>[navn]</name1>
+        <chars1>2</chars1>
+        <title1>Kommune</title1>
+        <placeholder2>Søg vej...</placeholder2>
+        <url2>http://geo.oiorest.dk/vejnavne.json?kommunekode=[selection1]%3Fvejnavn=[text]</url2>
+        <id2>kode</id2>
+        <name2>[navn] ([postnummer.nr])</name2>
+        <chars2>0</chars2>
+        <title2>Vej</title2>
+        <placeholder3>Søg husnr...</placeholder3>
+        <url3>http://geo.oiorest.dk/adresser.json?kommunekode=[selection1]%3Fvejkode=[selection2]%3Fhusnr=[text]*</url3>
+        <id3>id</id3>
+        <name3>[husnr]</name3>
+        <chars3>0</chars3>
+        <title3>Husnr.</title3>
+        <url>http://geo.oiorest.dk/adresser/[selection3].json</url>
+        <x1>wgs84koordinat.længde</x1>
+        <y1>wgs84koordinat.bredde</y1>
+        <projection>EPSG:4326</projection>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-zoom</ImageClass>
+      <Label>Søg adresse</Label>
+      <Tooltip>Click for at søge en adresse</Tooltip>
+      <StatusText />
+      <Disabled>false</Disabled>
+    </Widget>
+	<Widget xsi:type="UiWidgetType">
+      <Name>Matrikel</Name>
+      <Type>RfsSearch</Type>
+      <Location />
+      <Extension>
+        <placeholder1>Søg ejerlav...</placeholder1>
+        <url1>http://rtv04/rapportfrastedet/api/ejerlav?name=[text]</url1>
+        <id1>cadastralDistrictIdentifierField</id1>
+        <name1>[cadastralDistrictNameField]</name1>
+        <chars1>3</chars1>
+        <title1>Ejerlav</title1>
+        <placeholder2>Søg matrikel...</placeholder2>
+        <url2>http://rtv04/rapportfrastedet/api/matrikler?id=[selection1]%3Fname=[text]</url2>
+        <id2>cadastralDistrictIdentifierField</id2>
+        <name2>[landParcelIdentifierField]</name2>
+        <chars2>0</chars2>
+        <title2>Matrikel</title2>
+        <url>http://rtv04/rapportfrastedet/api/matrikel?id=[selection1]%3Fname=[text]</url>
+        <x1>point1Field.xField</x1>
+        <y1>point1Field.yField</y1>
+        <x2>point2Field.xField</x2>
+        <y2>point2Field.yField</y2>
+        <projection>EPSG:25832</projection>
+      </Extension>
+      <ImageUrl>images/icons.png</ImageUrl>
+      <ImageClass>select-zoom</ImageClass>
+      <Label>Matrikel</Label>
+      <Tooltip>Click to zoom to the selection</Tooltip>
+      <StatusText />
+      <Disabled>true</Disabled>
+    </Widget>
+	<Widget xsi:type="UiWidgetType">
+      <Name>QuickPlot</Name>
+      <Type>QuickPlotFlyout</Type>
+      <Location />
+      <ImageUrl>images/icons/print.png</ImageUrl>
+      <ImageClass />
+      <Label>Quick Plot</Label>
+      <Tooltip>Click to create a plot quickly</Tooltip>
+      <StatusText />
+      <Disabled>false</Disabled>
+    </Widget>
+  </WidgetSet>
+
+  <Extension/>
+
+</ApplicationDefinition>

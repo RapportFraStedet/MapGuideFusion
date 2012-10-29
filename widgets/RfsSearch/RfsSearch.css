@@ -1,0 +1,89 @@
+.RfsSearch,
+.RfsSearch .jxFlyoutContent,
+.RfsSearch .jxFlyoutContent .jxPanel,
+.RfsSearch .jxFlyoutContent .jxPanel .jxPanelContentContainer ,
+.RfsSearch .jxFlyoutContent .jxPanel .jxPanelContentContainer  .jxPanelContent{
+	width: 400px;
+	height: 195px;
+}
+.RfsSearch,
+.RfsSearch .jxFlyoutContent,
+.RfsSearch .jxFlyoutContent .jxPanel{
+	height: 217px;
+}
+.RfsSearch .jxFlyoutContent {
+	overflow:hidden;
+}
+	
+.RfsSearch .jxChrome{
+	width: 416px;
+	height: 233px;
+}
+.RfsSearchTable{
+	/*width:390px;*/
+	padding:5px 0 5px 5px;
+	
+}
+
+.RfsSearchTable {
+	font-family: Arial, Verdana;
+	font-size: 0.8em;
+}
+.RfsSearchTable  p{
+	font-weight: bold;
+	color: #666666;
+	margin-top:10px;
+}
+
+.RfsSearchTable th{
+	font-weight: bold;
+	color: #666666;
+	padding:5px 0 0 5px;
+}
+
+.col1, .col2{
+	width: 148px;
+	padding: 5px 5px 0 0;
+
+}
+.col1 input, .col1  ul, .col2 input, .col2 ul, .col3 input, .col3 ul{
+	width: 100%;
+	/*padding: 0 5px ;*/
+
+}
+.col3{
+	width: 70px;
+	padding: 5px 5px 0 0;
+}
+
+.RfsSearchSelectRow ul{
+	overflow: scroll;
+    overflow-x: hidden;
+	height: 80px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: gray;
+}
+
+.RfsSearchSelectRow li{
+	color: #666666;
+	cursor: pointer;
+}
+.RfsSearchSelectRow a{
+	padding: 0 5px;
+	display:block;
+}
+.RfsSearchSelectRow .selected{
+	color: #ffffff;
+	background-color: #3366ff;
+	display:block;
+}
+.RfsSearchTable input{
+	border-width: 1px;
+	border-style: solid;
+	border-color: gray;
+
+}
+/*.RfsSearchTable table td{
+	padding:5px 5px 0 0;
+}*/
