@@ -450,9 +450,13 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget,  {
 					lonlat.transform(new OpenLayers.Projection(self.projection), mapProjection);
 					self.vector.clearMarkers();
 					self.vector.addMarker(new OpenLayers.Marker(lonlat,this.icon));
-					//self.map.zoomToExtent(self.vector.getDataExtent());
-					var o = self.zoom/2;
-					self.map.zoomToExtent([lonlat.lon-o, lonlat.lat-o, lonlat.lon+o, lonlat.lat+o]);
+					if(self.zoom)
+					{
+						var o = self.zoom / 2;
+						self.map.zoomToExtent([lonlat.lon - o, lonlat.lat - o, lonlat.lon + o, lonlat.lat + o]);
+					}
+					else
+						self.map.zoomToExtent(self.vector.getDataExtent());
                     /*var point = new OpenLayers.Geometry.Point(self.getPath(data, self.x1), self.getPath(data, self.y1));
                     point.transform(new OpenLayers.Projection(self.projection), self.map.projection);
 					self.vector.removeAllFeatures();
