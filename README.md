@@ -1,0 +1,4 @@
+Widgets
+=======
+
+MapGuide Fusion Widgets
