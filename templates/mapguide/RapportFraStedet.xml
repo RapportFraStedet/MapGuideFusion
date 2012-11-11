@@ -1,0 +1,25 @@
+<TemplateInfo>
+<Name>RapportFraStedet</Name>
+<LocationUrl>fusion/templates/mapguide/RapportFraStedet/index.html</LocationUrl>
+<Description>Rapport Fra Stedet template</Description>
+<PreviewImageUrl>fusion/templates/mapguide/RapportFraStedet/preview.png</PreviewImageUrl>
+
+<Panel>
+<Name>Map</Name>
+<Label>Map</Label>
+<Description>The main map display</Description>
+</Panel>
+
+<Panel>
+<Name>RapportFraStedet</Name>
+<Label>Formular</Label>
+<Description>The panel containing the form</Description>
+</Panel>
+
+<Panel>
+<Name>Navigator</Name>
+<Label>Navigator (Zoom Slider)</Label>
+<Description>The navigator and zoom slider</Description>
+</Panel>
+
+</TemplateInfo>
