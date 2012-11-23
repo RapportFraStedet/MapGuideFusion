@@ -104,7 +104,7 @@ Fusion.Widget.PanQuery = OpenLayers.Class(Fusion.Widget, {
 
             this.getMap().query(options);
         }
-        Event.stop(e);
+        //Event.stop(e);
     },    
     activate : function() {
         this.control.activate();

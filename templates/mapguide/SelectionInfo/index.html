@@ -42,25 +42,37 @@ window.onload = function() {
     /* make 'thePage' just fill the browser window and resize automagically
        the user resizes the browser */
 	new Jx.Layout('thePage').resize();
-	var topToolbar = new Jx.Toolbar({id: 'Toolbar', position: 'top'});
+	new Jx.Layout('ToolbarContainer',{height:30});
+	var topToolbar = new Jx.Toolbar({id: 'Toolbar', position: 'top'}).addTo('ToolbarContainer');
     var mainPanel = new Jx.Panel({
-        id: 'Main',
-		/*content: new Jx.Layout('Map'),*/
+        id: 'Main2',
+		content: new Jx.Layout('Map'),
         hideTitle: true,
-        toolbars: [topToolbar]
+        //toolbars: [topToolbar],
+		top:30
     });
-    mainPanel.addTo('thePage')
-    new Jx.Layout('Main');
-new Jx.Splitter(mainPanel.content, {
-       elements: ['Map', 'SelectionPanel'],
+    mainPanel.addTo('thePage');
+	var sidePanel = new Jx.Panel({
+        id: 'Side',
+		content: new Jx.Layout('SelectionPanel'),
+        hideTitle: true,
+		top:30,
+		left:null,
+		width:200
+    });
+	sidePanel.addTo('thePage');
+    //new Jx.Layout('Map');
+	//new Jx.Layout('SelectionPanel',{top:50,left:null,width: 200 });
+/*new Jx.Splitter(mainPanel.content, {
+       elements: ['Map', new Jx.Layout('SelectionPanel')],
        containerOptions: [{}, {width: 500}]
-    });
+    });*/
     //new Jx.Layout('Statusbar', {height: 30, top: null});
     
     Fusion.registerForEvent(Fusion.Event.FUSION_INITIALIZED, function() {
         $('thePage').resize({forceResize: true});
         $('thePage').style.visibility = 'visible';
-        mainPanel.layoutContent();
+        //mainPanel.layoutContent();
     });
     Fusion.registerForEvent(Fusion.Event.FUSION_ERROR, fusionError);
     Fusion.initialize();
@@ -76,8 +88,12 @@ function fusionError(eventId, error) {
 <body>
 
 <div id="thePage" style="visibility: hidden">
+  <div id="ToolbarContainer"></div>
 
-  <div id="Map"><div id="Navigator"></div></div>
+	<div id="Map">
+		<div id="Navigator"></div>
+	</div>
+
 <div id="SelectionPanel"></div>
 </div>
 <div id="Maptip">
