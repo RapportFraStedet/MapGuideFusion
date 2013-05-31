@@ -568,11 +568,15 @@ Fusion.Widget.LegendFlyout.LegendRendererDefault = OpenLayers.Class(Fusion.Widge
 			}
 		},
 		updateGroupLayers : function (group, fScale) {
-			for (var i = 0; i < group.groups.length; i++) {
-				this.updateGroupLayers(group.groups[i], fScale);
+			if (group.groups) {
+				for (var i = 0; i < group.groups.length; i++) {
+					this.updateGroupLayers(group.groups[i], fScale);
+				}
 			}
-			for (var i = 0; i < group.layers.length; i++) {
-				this.updateLayer(group.layers[i], fScale);
+			if (group.layers) {
+				for (var i = 0; i < group.layers.length; i++) {
+					this.updateLayer(group.layers[i], fScale);
+				}
 			}
 		},
 		updateLayer : function (layer, fScale) {
