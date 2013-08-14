@@ -433,6 +433,9 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget, {
 					url : self.url.replace("[text]", name).replace("[kommune]", self.kommuneNr).replace("[selection1]", self.selection1).replace("[selection2]", self.selection2).replace("[selection3]", self.selection3),
 					dataType : 'jsonp',
 					success : function (data) {
+						self.map.removeLayer(self.vector);
+						self.vector = new OpenLayers.Layer.Markers("RfsSearch", {});
+						self.map.addLayer(self.vector);
 						var code = null;
 						try {
 							code = self.map.projection.getCode();
