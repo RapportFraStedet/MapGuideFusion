@@ -255,7 +255,7 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget, {
 					}
 					self.searchStatus.html("<p>Søger...</p>");
 					this.ajax = jQuery.ajax({
-							url : self.url1.replace("[text]", self.text1).replace("[kommune]", this.kommuneNr),
+							url : self.url1.replace("[text]", encodeURIComponent(self.text1)).replace("[kommune]", this.kommuneNr),
 							dataType : 'jsonp',
 							success : function (data) {
 
@@ -295,7 +295,7 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget, {
 				}
 				self.searchStatus.html("<p>Søger...</p>");
 				self.ajax = jQuery.ajax({
-						url : self.url2.replace("[text]", self.text2).replace("[kommune]", self.kommuneNr).replace("[selection1]", self.selection1),
+						url : self.url2.replace("[text]", encodeURIComponent(self.text2)).replace("[kommune]", self.kommuneNr).replace("[selection1]", self.selection1),
 						dataType : 'jsonp',
 						success : function (data) {
 							for (var i = 0; i < data.length; i++) {
@@ -329,7 +329,7 @@ Fusion.Widget.RfsSearch = OpenLayers.Class(Fusion.Widget, {
 				}
 				self.searchStatus.html("<p>Søger...</p>");
 				self.ajax = jQuery.ajax({
-						url : self.url3.replace("[text]", self.text3).replace("[kommune]", self.kommuneNr).replace("[selection1]", self.selection1).replace("[selection2]", self.selection2),
+						url : self.url3.replace("[text]", encodeURIComponent(self.text3)).replace("[kommune]", self.kommuneNr).replace("[selection1]", self.selection1).replace("[selection2]", self.selection2),
 						dataType : 'jsonp',
 						success : function (data) {
 							for (var i = 0; i < data.length; i++) {
